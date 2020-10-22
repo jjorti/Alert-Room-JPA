@@ -21,7 +21,7 @@ public class Usuario {
 	@Column(nullable = false , length = 50  )
 	private String nombres;
 	
-	@Column(nullable = false , length = 41)
+	@Column(nullable = false , length = 50)
 	private String apellidos;
 	
 	@Column(nullable = false , columnDefinition="CHAR(32)")

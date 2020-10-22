@@ -18,7 +18,7 @@ public class InventarioAmbiente {
 	// modificar la base de datos o buscar otra alternativa, se coloca @id para que no
 	// aparezca el error 
 	@Id   
-	@Column(name = "idambiente", length = 10 ,nullable = false)
+	@Column(name = "idambiente", columnDefinition="CHAR(11)" ,nullable = false)
 	private String idAmbiente;
 	
 	@Column( name = "idarticulo", nullable = false)

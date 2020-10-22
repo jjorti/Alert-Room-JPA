@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Ambiente {
 	
 	@Id
-	@Column(name = "identificacion", columnDefinition="CHAR(11)")
+	@Column(name = "iambiente", columnDefinition="CHAR(11)")
 	private String id;
 	
 	@Column(nullable = true , columnDefinition="CHAR(50)")
