@@ -5,12 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * class for users table mapping
+ * @author JUAN ORTIZ
+ *
+ */
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
 	
 	@Id
-	@Column(name = "identificacion", length = 11)
+	@Column(name = "identificacion", length = 11,  columnDefinition="CHAR(11)")
 	private String id;
 	
 	@Column(nullable = false , length = 50  )
