@@ -5,6 +5,7 @@ import javax.persistence.Persistence;
 
 public class JPAUtil {
 	
+	//Probando gittttttttttttttttttt
 	private static final String UNIDAD_DE_PERSISTENCIA = "AlertRoom";
 	private static EntityManagerFactory factory;
 	
