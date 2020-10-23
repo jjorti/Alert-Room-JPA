@@ -34,6 +34,7 @@ public class Articulo {
 
 	/**
 	 * Class constructor using fields
+	 * 
 	 * @param id
 	 * @param nombre
 	 */
