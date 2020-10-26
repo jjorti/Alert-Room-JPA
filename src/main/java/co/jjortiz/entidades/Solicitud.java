@@ -32,7 +32,7 @@ public class Solicitud {
 	private String idUsuario;
 	
 	//TODO Preguntar por tipo de dato que almacene hora y fecha 
-    @Column(name = "fecha_hora",nullable = false)
+    @Column(name = "fecha_hora")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHora;
     

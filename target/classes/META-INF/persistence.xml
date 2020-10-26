@@ -6,6 +6,13 @@
 	<persistence-unit name="AlertRoom"
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>co.jjortiz.entidades.Ambiente</class>
+		<class>co.jjortiz.entidades.Articulo</class>
+		<class>co.jjortiz.entidades.Concepto</class>
+		<class>co.jjortiz.entidades.InventarioAmbiente</class>
+		<class>co.jjortiz.entidades.Novedad</class>
+		<class>co.jjortiz.entidades.Solicitud</class>
+		<class>co.jjortiz.entidades.Usuario</class>
 		<!-- <class> com.alert_room.model.Usuario</class> -->
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />

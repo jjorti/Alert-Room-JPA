@@ -12,6 +12,7 @@ public class JPAUtil {
 	public static EntityManagerFactory getEntityManagerFactory() {
 		System.out.println("1");
 		if (factory == null ) {
+			System.out.println("se totea antes de esto");
 			factory= Persistence.createEntityManagerFactory(UNIDAD_DE_PERSISTENCIA);
 		}
 		System.out.println("2");
