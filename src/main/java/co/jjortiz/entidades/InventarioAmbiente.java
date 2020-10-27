@@ -2,7 +2,12 @@ package co.jjortiz.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -16,13 +21,19 @@ public class InventarioAmbiente {
 
 	//TODO : La entidad no tiene una llave primaria lo que genera errores para JPA
 	// modificar la base de datos o buscar otra alternativa, se coloca @id para que no
-	// aparezca el error 
-	@Id   
-	@Column(name = "idambiente", columnDefinition="CHAR(11)" ,nullable = false)
-	private String idAmbiente;
+	// aparezca el error
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idambiente_inventario")
+	private Integer idambienteinventario;
+
+	@ManyToOne
+	@JoinColumn(name = "idambiente", referencedColumnName = "idambiente", foreignKey = @ForeignKey(name ="Fk_inventarioambiente_ambiente"))
+	private Ambiente idAmbienteInventario;
 	
-	@Column( name = "idarticulo", nullable = false)
-	private Integer idArticulo;
+	@ManyToOne
+	@JoinColumn(name = "idarticulo", referencedColumnName = "idarticulo", foreignKey = @ForeignKey(name ="Fk_inventarioambiente_articulo"))
+	private Articulo idArticulo;
 	
 	@Column( name = "cantidad" , nullable = false)
 	private Integer cantidad;
@@ -41,26 +52,27 @@ public class InventarioAmbiente {
 	 * @param idArticulo
 	 * @param cantidad
 	 */
-	public InventarioAmbiente(String idAmbiente, Integer idArticulo, Integer cantidad) {
+	public InventarioAmbiente(Integer idambienteinventario, Ambiente idAmbiente, Articulo idArticulo, Integer cantidad) {
 		super();
-		this.idAmbiente = idAmbiente;
+		this.idambienteinventario = idambienteinventario;
+		this.idAmbienteInventario = idAmbiente;
 		this.idArticulo = idArticulo;
 		this.cantidad = cantidad;
 	}
 
-	public String getIdAmbiente() {
-		return idAmbiente;
+	public Ambiente getIdAmbiente() {
+		return idAmbienteInventario;
 	}
 
-	public void setIdAmbiente(String idAmbiente) {
-		this.idAmbiente = idAmbiente;
+	public void setIdAmbiente(Ambiente idAmbiente) {
+		this.idAmbienteInventario = idAmbiente;
 	}
 
-	public Integer getIdArticulo() {
+	public Articulo getIdArticulo() {
 		return idArticulo;
 	}
 
-	public void setIdArticulo(Integer idArticulo) {
+	public void setIdArticulo(Articulo idArticulo) {
 		this.idArticulo = idArticulo;
 	}
 
@@ -71,11 +83,12 @@ public class InventarioAmbiente {
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	public Integer getIdambienteinventario() {
+		return idambienteinventario;
+	}
+
+	public void setIdambienteinventario(Integer idambienteinventario) {
+		this.idambienteinventario = idambienteinventario;
+	}
 }
