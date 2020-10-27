@@ -1,8 +1,14 @@
 package co.jjortiz.entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 /**
@@ -42,11 +48,17 @@ public class Usuario {
 	@Column(nullable = false , columnDefinition="CHAR(1)")
 	private String estado;
 	
+	//TODO relacion con dudas
+	/*
+	 * @OneToMany(mappedBy = "idUsuarioGuarda", cascade= {CascadeType.PERSIST,
+	 * CascadeType.MERGE}) private List<Novedad> listaNovedades;
+	 */
+	
 	/**
 	 *Constructor empty 
 	 */
 	public Usuario() {
-		
+		//this.listaNovedades = new ArrayList<Novedad>();
 	}
 
 	/**
@@ -75,8 +87,35 @@ public class Usuario {
 		this.foto = foto;
 		this.estado = estado;
 	}
-
 	
+	/**
+	 * Constructor de la clase con el listado de novedades
+	 * @param id
+	 * @param nombres
+	 * @param apellidos
+	 * @param contrasena
+	 * @param email
+	 * @param telefono
+	 * @param tipoUsuario
+	 * @param foto
+	 * @param estado
+	 * @param listaNovedades
+	 */
+	public Usuario(String id, String nombres, String apellidos, String contrasena, String email, String telefono,
+			String tipoUsuario, String foto, String estado, List<Novedad> listaNovedades) {
+		super();
+		this.id = id;
+		this.nombres = nombres;
+		this.apellidos = apellidos;
+		this.contrasena = contrasena;
+		this.email = email;
+		this.telefono = telefono;
+		this.tipoUsuario = tipoUsuario;
+		this.foto = foto;
+		this.estado = estado;
+		//this.listaNovedades = listaNovedades;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -147,5 +186,14 @@ public class Usuario {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}	
+	}
+
+	/*
+	 * public List<Novedad> getListaNovedades() { return listaNovedades; }
+	 * 
+	 * public void setListaNovedades(List<Novedad> listaNovedades) {
+	 * this.listaNovedades = listaNovedades; }
+	 */
+	
+	
 }
