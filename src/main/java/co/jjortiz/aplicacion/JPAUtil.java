@@ -5,17 +5,13 @@ import javax.persistence.Persistence;
 
 public class JPAUtil {
 	
-	//Probando gittttttttttttttttttt
 	private static final String UNIDAD_DE_PERSISTENCIA = "AlertRoom";
 	private static EntityManagerFactory factory;
 	
 	public static EntityManagerFactory getEntityManagerFactory() {
-		System.out.println("1");
 		if (factory == null ) {
-			System.out.println("se totea antes de esto");
 			factory= Persistence.createEntityManagerFactory(UNIDAD_DE_PERSISTENCIA);
 		}
-		System.out.println("2");
 		return factory;
 	}
 	
