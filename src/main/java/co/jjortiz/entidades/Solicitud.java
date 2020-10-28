@@ -2,11 +2,17 @@ package co.jjortiz.entidades;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,8 +31,11 @@ public class Solicitud {
 	@Column(name = "idsolicitud")
 	private Integer idSolicitud;
 	
-	@Column(name = "idambiente",nullable = false, columnDefinition="CHAR(11)" )
-	private String idAmbiente;
+	@ManyToOne
+	@JoinColumn(name = "idambiente", referencedColumnName = "idambiente", foreignKey = @ForeignKey(name ="Fk_solicitud_ambiente"))
+
+	private Ambiente idAmbiente;
+
 	
 	@Column(name = "idusuario", nullable = false, columnDefinition="CHAR(11)" )
 	private String idUsuario;
@@ -36,8 +45,9 @@ public class Solicitud {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHora;
     
-    @Column(name = "concepto",	nullable = false)
-    private Integer concepto;
+    @ManyToOne
+    @JoinColumn(name = "idconcepto", referencedColumnName = "idconcepto" , foreignKey = @ForeignKey(name ="Fk_solicitud_concepto"))
+    private Concepto concepto;
 	
     @Column(name ="observaciones", nullable = false , length = 255)
     private String observaciones;
@@ -59,7 +69,7 @@ public class Solicitud {
 	 * @param concepto
 	 * @param observaciones
 	 */
-	public Solicitud(Integer idSolicitud, String idAmbiente, String idUsuario, Date fechaHora, Integer concepto,
+	public Solicitud(Integer idSolicitud, Ambiente idAmbiente, String idUsuario, Date fechaHora, Concepto concepto,
 			String observaciones) {
 		super();
 		this.idSolicitud = idSolicitud;
@@ -78,11 +88,11 @@ public class Solicitud {
 		this.idSolicitud = idSolicitud;
 	}
 
-	public String getIdAmbiente() {
+	public Ambiente getIdAmbiente() {
 		return idAmbiente;
 	}
 
-	public void setIdAmbiente(String idAmbiente) {
+	public void setIdAmbiente(Ambiente idAmbiente) {
 		this.idAmbiente = idAmbiente;
 	}
 
@@ -102,11 +112,11 @@ public class Solicitud {
 		this.fechaHora = fechaHora;
 	}
 
-	public Integer getConcepto() {
+	public Concepto getConcepto() {
 		return concepto;
 	}
 
-	public void setConcepto(Integer concepto) {
+	public void setConcepto(Concepto concepto) {
 		this.concepto = concepto;
 	}
 
