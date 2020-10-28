@@ -29,6 +29,8 @@ public class UsuariosDAO implements Serializable{
 		Usuario miUsuario=entityManager.find(Usuario.class, id);
 		
 		if (miUsuario!=null) {
+			System.out.println("se encontro el usuario");
+			System.out.println(miUsuario.getNombres());
 			return miUsuario;
 		}else {
 			System.out.println("no se encuentra el usuario");
