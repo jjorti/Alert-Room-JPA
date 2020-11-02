@@ -44,7 +44,7 @@ public class Ambiente {
 	@OneToMany(mappedBy = "idAmbiente", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Novedad> listaNovedades;
 	
-	@OneToMany(mappedBy = "idAmbienteInventario", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(mappedBy = "idAmbiente", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<InventarioAmbiente> listaInventarioAmbiente;
 
 	/**

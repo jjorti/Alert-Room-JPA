@@ -25,11 +25,11 @@ public class InventarioAmbiente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idambiente_inventario")
-	private Integer idambienteinventario;
+	private Integer idAmbienteinventario;
 
 	@ManyToOne
 	@JoinColumn(name = "idambiente", referencedColumnName = "idambiente", foreignKey = @ForeignKey(name ="Fk_inventarioambiente_ambiente"))
-	private Ambiente idAmbienteInventario;
+	private Ambiente idAmbiente;
 	
 	@ManyToOne
 	@JoinColumn(name = "idarticulo", referencedColumnName = "idarticulo", foreignKey = @ForeignKey(name ="Fk_inventarioambiente_articulo"))
@@ -54,18 +54,18 @@ public class InventarioAmbiente {
 	 */
 	public InventarioAmbiente(Integer idambienteinventario, Ambiente idAmbiente, Articulo idArticulo, Integer cantidad) {
 		super();
-		this.idambienteinventario = idambienteinventario;
-		this.idAmbienteInventario = idAmbiente;
+		this.idAmbienteinventario = idambienteinventario;
+		this.idAmbiente = idAmbiente;
 		this.idArticulo = idArticulo;
 		this.cantidad = cantidad;
 	}
 
 	public Ambiente getIdAmbiente() {
-		return idAmbienteInventario;
+		return idAmbiente;
 	}
 
 	public void setIdAmbiente(Ambiente idAmbiente) {
-		this.idAmbienteInventario = idAmbiente;
+		this.idAmbiente = idAmbiente;
 	}
 
 	public Articulo getIdArticulo() {
@@ -85,10 +85,10 @@ public class InventarioAmbiente {
 	}
 
 	public Integer getIdambienteinventario() {
-		return idambienteinventario;
+		return idAmbienteinventario;
 	}
 
 	public void setIdambienteinventario(Integer idambienteinventario) {
-		this.idambienteinventario = idambienteinventario;
+		this.idAmbienteinventario = idambienteinventario;
 	}
 }
