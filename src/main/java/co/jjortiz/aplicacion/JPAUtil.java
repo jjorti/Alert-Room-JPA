@@ -9,7 +9,7 @@ public class JPAUtil {
 	private static EntityManagerFactory factory;
 	
 	public static EntityManagerFactory getEntityManagerFactory() {
-		if (factory == null ) {
+		if (factory == null || !factory.isOpen()) {
 			factory= Persistence.createEntityManagerFactory(UNIDAD_DE_PERSISTENCIA);
 		}
 		return factory;
