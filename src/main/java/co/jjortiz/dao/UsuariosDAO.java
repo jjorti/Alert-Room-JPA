@@ -32,14 +32,12 @@ public class UsuariosDAO implements Serializable{
 		if (miUsuario!=null && miUsuario.getEstado().equals("A")) {
 			return miUsuario;
 		}else {
-			System.out.println("no se encuentra el usuario");
 			miUsuario=null;
 			return miUsuario;
 		}
 	}
 	
-/// gitttttttttttttttttttttt
-	////////askdahareyeruewry
+
 	public void close() {
 		entityManager.close();
 		JPAUtil.shutdown();
@@ -57,7 +55,6 @@ public class UsuariosDAO implements Serializable{
 			
 			resp="ok";
 		} catch (Exception e) {
-			System.out.println("No se puede registrar la persona");
 			e.printStackTrace();
 		}
 	
@@ -68,8 +65,6 @@ public class UsuariosDAO implements Serializable{
 
 	
 	public Usuario consultarUsuario(String documento) {
-		System.out.print("CONSULTAR USUARIO JPA");
-		//Consulta al usuario al pasarle el documento como parametro
 		Usuario miUsuario=entityManager.find(Usuario.class,documento);
 		
 		if (miUsuario!=null) {
@@ -87,15 +82,12 @@ public class UsuariosDAO implements Serializable{
 		String resp="";
 		try {
 			entityManager.getTransaction().begin();
-			//busca un registro que concuerde con los datos 
 			entityManager.merge(miUsuario);
 			entityManager.getTransaction().commit();
-			System.out.println("ACTUALIZOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 			resp="Persona Actualizada!";
 		} catch (Exception e) {
 			resp="No se puede eliminar la persona"
 					+ " verifique que no tenga registros pendientes";
-			System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO ACTUALIZO");
 		}		
 		return resp;
 	}
@@ -107,22 +99,14 @@ public class UsuariosDAO implements Serializable{
 		String resp="";
 		try {
 			entityManager.getTransaction().begin();
-			//busca un registro que concuerde con los datos 
 			entityManager.merge(miUsuario);
 			entityManager.getTransaction().commit();
-			System.out.println("Actualizo persona DAO JPA");
 			resp="Persona Actualizada!";
 		} catch (Exception e) {
 			resp="No se puede actualizar la persona"
 					+ " verifique que no tenga registros pendientes";
-			System.out.println("No se puede actualizar la persona");
 		}		
 		return resp;
 	}
-	
-	
-	
-	
-	
 
 }
