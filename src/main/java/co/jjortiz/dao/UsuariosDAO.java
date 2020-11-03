@@ -39,6 +39,7 @@ public class UsuariosDAO implements Serializable{
 	}
 	
 /// gitttttttttttttttttttttt
+	////////askdahareyeruewry
 	public void close() {
 		entityManager.close();
 		JPAUtil.shutdown();
