@@ -30,8 +30,24 @@ public class AmbientesDAO implements Serializable{
 		
 		return res;
 	}
-	
 
+	public String eliminarAmbiente(Ambiente miAmbiente) {
+
+		String res = "";
+		try {
+			entityManager.getTransaction().begin();
+			entityManager.remove(miAmbiente);
+			entityManager.getTransaction().commit();
+			
+			res = "ok";
+			
+		} catch (Exception e) {
+			res = "Problemas con la base de datos";
+		}
+		
+		
+		return res;
+	}
 
 	public List<Ambiente> obtenerListaAmbientes() {
 		List<Ambiente> listaAmbientes = new ArrayList<Ambiente>();
@@ -40,9 +56,24 @@ public class AmbientesDAO implements Serializable{
 		return listaAmbientes;
 	}
 	
+	public Ambiente consultarAmbiente(String id) {
+		System.out.println("2");
+
+		Ambiente miAmbiente = entityManager.find(Ambiente.class, id);
+		if (miAmbiente != null) {
+			System.out.println(miAmbiente.getNombre());
+			return miAmbiente;
+		} else {
+			return null;
+		}
+	}
+	
 	public void close() {
 		entityManager.close();
 		JPAUtil.shutdown();
 	}
+
+
+
 
 }

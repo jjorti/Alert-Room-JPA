@@ -1,5 +1,6 @@
 package co.jjortiz.entidades;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -31,7 +32,7 @@ public class InventarioAmbiente {
 	@JoinColumn(name = "idambiente", referencedColumnName = "idambiente", foreignKey = @ForeignKey(name ="Fk_inventarioambiente_ambiente"))
 	private Ambiente idAmbiente;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "idarticulo", referencedColumnName = "idarticulo", foreignKey = @ForeignKey(name ="Fk_inventarioambiente_articulo"))
 	private Articulo idArticulo;
 	
