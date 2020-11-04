@@ -27,14 +27,13 @@ public class UsuariosDAO implements Serializable{
 	public Usuario consultarLoginUsuario(String id, String contrasena) {
 		
 		Usuario miUsuario=entityManager.find(Usuario.class, id);
+			
 		
-		if (miUsuario!=null) {
-			System.out.println("se encontro el usuario");
-			System.out.println(miUsuario.getNombres());
+		if (miUsuario!=null && miUsuario.getEstado().equals("A")) {
 			return miUsuario;
 		}else {
-			System.out.println("no se encuentra el usuario");
-			return null;
+			miUsuario=null;
+			return miUsuario;
 		}
 	}
 	
@@ -43,7 +42,80 @@ public class UsuariosDAO implements Serializable{
 		entityManager.close();
 		JPAUtil.shutdown();
 	}
+
+
+	public String registrarUsuario(Usuario miUsuario) {
+		
+		String resp="";
+		
+		try {
+			entityManager.getTransaction().begin();
+			entityManager.persist(miUsuario);
+			entityManager.getTransaction().commit();
+			
+			resp="ok";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	
+		return resp;
+	}
+
+
+
+	
+	public Usuario consultarUsuario(String documento) {
+		Usuario miUsuario=entityManager.find(Usuario.class,documento);
+		
+		if (miUsuario!=null) {
+			return miUsuario;
+		}else {
+			return null;
+		}
+	}
+	
+	
+	
+	
+	public String actualizarUsuario(Usuario miUsuario) {
+
+		String resp="";
+		try {
+			entityManager.getTransaction().begin();
+			entityManager.merge(miUsuario);
+			entityManager.getTransaction().commit();
+			resp="Persona Actualizada!";
+		} catch (Exception e) {
+			resp="No se puede eliminar la persona"
+					+ " verifique que no tenga registros pendientes";
+		}		
+		return resp;
+	}
+	
+	
+	
+	public String actualizarEstado(Usuario miUsuario) {
+		System.out.println("Entro a actualizar estado DAO JPA");
+		String resp="";
+		try {
+			entityManager.getTransaction().begin();
+			entityManager.merge(miUsuario);
+			entityManager.getTransaction().commit();
+			resp="Persona Actualizada!";
+		} catch (Exception e) {
+			resp="No se puede actualizar la persona"
+					+ " verifique que no tenga registros pendientes";
+		}		
+		return resp;
+	}
+	
+	
+	public List<Usuario> listarUsuarios(){
+		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
+		Query query = entityManager.createQuery("SELECT u FROM Usuario u");
+		listaUsuarios = query.getResultList();
+		return listaUsuarios;
+	}
 	
 
 }
