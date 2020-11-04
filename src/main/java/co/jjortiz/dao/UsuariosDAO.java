@@ -115,7 +115,7 @@ public class UsuariosDAO implements Serializable{
 		Query query = entityManager.createQuery("SELECT u FROM Usuario u");
 		listaUsuarios = query.getResultList();
 		return listaUsuarios;
-		
 	}
+	
 
 }
