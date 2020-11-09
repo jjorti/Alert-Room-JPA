@@ -1,6 +1,5 @@
 package co.jjortiz.entidades;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,101 +18,43 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
-	
+
 	@Id
 	@Column(name = "identificacion", length = 11,  columnDefinition="CHAR(11)")
 	private String id;
-	
+
 	@Column(nullable = false , length = 50  )
 	private String nombres;
-	
+
 	@Column(nullable = false , length = 50)
 	private String apellidos;
-	
+
 	@Column(nullable = false , columnDefinition="CHAR(32)")
 	private String contrasena;
-	
+
 	@Column(nullable = false , length = 50  )
 	private String email;
-	
+
 	@Column(nullable = true , length = 25  )
 	private String telefono;
-	
+
 	@Column(name="tipo_usuario" , nullable = false , columnDefinition="CHAR(1)")
 	private String tipoUsuario;
-	
+
 	@Column(nullable = true , columnDefinition = "TEXT")
 	private String foto;
-	
+
 	@Column(nullable = false , columnDefinition="CHAR(1)")
 	private String estado;
-	
-	//TODO relacion con dudas
-	/*
-	 * @OneToMany(mappedBy = "idUsuarioGuarda", cascade= {CascadeType.PERSIST,
-	 * CascadeType.MERGE}) private List<Novedad> listaNovedades;
-	 */
-	
+
+	@OneToMany(mappedBy = "idUsuario", cascade= {CascadeType.PERSIST,CascadeType.MERGE}) 
+	private List<Solicitud> listaSolicitudes;
+
 	/**
 	 *Constructor empty 
 	 */
 	public Usuario() {
 		//this.listaNovedades = new ArrayList<Novedad>();
-	}
-
-	/**
-	 * Class constructor using fields
-	 * 
-	 * @param id
-	 * @param nombres
-	 * @param apellidos
-	 * @param contrasena
-	 * @param email
-	 * @param telefono
-	 * @param tipoUsuario
-	 * @param foto
-	 * @param estado
-	 */
-	public Usuario(String id, String nombres, String apellidos, String contrasena, String email, String telefono,
-			String tipoUsuario, String foto, String estado) {
-		super();
-		this.id = id;
-		this.nombres = nombres;
-		this.apellidos = apellidos;
-		this.contrasena = contrasena;
-		this.email = email;
-		this.telefono = telefono;
-		this.tipoUsuario = tipoUsuario;
-		this.foto = foto;
-		this.estado = estado;
-	}
-	
-	/**
-	 * Constructor de la clase con el listado de novedades
-	 * @param id
-	 * @param nombres
-	 * @param apellidos
-	 * @param contrasena
-	 * @param email
-	 * @param telefono
-	 * @param tipoUsuario
-	 * @param foto
-	 * @param estado
-	 * @param listaNovedades
-	 */
-	public Usuario(String id, String nombres, String apellidos, String contrasena, String email, String telefono,
-			String tipoUsuario, String foto, String estado, List<Novedad> listaNovedades) {
-		super();
-		this.id = id;
-		this.nombres = nombres;
-		this.apellidos = apellidos;
-		this.contrasena = contrasena;
-		this.email = email;
-		this.telefono = telefono;
-		this.tipoUsuario = tipoUsuario;
-		this.foto = foto;
-		this.estado = estado;
-		//this.listaNovedades = listaNovedades;
 	}
 
 	public String getId() {
@@ -194,6 +135,6 @@ public class Usuario {
 	 * public void setListaNovedades(List<Novedad> listaNovedades) {
 	 * this.listaNovedades = listaNovedades; }
 	 */
-	
-	
+
+
 }
