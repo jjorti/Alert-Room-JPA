@@ -11,8 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,16 +29,14 @@ public class Solicitud {
 	@Column(name = "idsolicitud")
 	private Integer idSolicitud;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "idambiente", referencedColumnName = "idambiente", foreignKey = @ForeignKey(name ="Fk_solicitud_ambiente"))
-
 	private Ambiente idAmbiente;
 
+	@ManyToOne
+	@JoinColumn(name = "idusuario", referencedColumnName = "identificacion", foreignKey = @ForeignKey(name ="Fk_solicitud_usuario") )
+	private Usuario idUsuario;
 	
-	@Column(name = "idusuario", nullable = false, columnDefinition="CHAR(11)" )
-	private String idUsuario;
-	
-	//TODO Preguntar por tipo de dato que almacene hora y fecha 
     @Column(name = "fecha_hora")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHora;
@@ -59,27 +55,6 @@ public class Solicitud {
     	
     }
 
-	/**
-	 * Class constructor using fields
-	 * 
-	 * @param idSolicitud
-	 * @param idAmbiente
-	 * @param idUsuario
-	 * @param fechaHora
-	 * @param concepto
-	 * @param observaciones
-	 */
-	public Solicitud(Integer idSolicitud, Ambiente idAmbiente, String idUsuario, Date fechaHora, Concepto concepto,
-			String observaciones) {
-		super();
-		this.idSolicitud = idSolicitud;
-		this.idAmbiente = idAmbiente;
-		this.idUsuario = idUsuario;
-		this.fechaHora = fechaHora;
-		this.concepto = concepto;
-		this.observaciones = observaciones;
-	}
-
 	public Integer getIdSolicitud() {
 		return idSolicitud;
 	}
@@ -96,11 +71,11 @@ public class Solicitud {
 		this.idAmbiente = idAmbiente;
 	}
 
-	public String getIdUsuario() {
+	public Usuario getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(String idUsuario) {
+	public void setIdUsuario(Usuario idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
@@ -127,8 +102,4 @@ public class Solicitud {
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
-    
-    
-	
-
 }
