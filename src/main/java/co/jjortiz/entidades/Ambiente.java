@@ -25,9 +25,6 @@ public class Ambiente {
 	
 	@Column(nullable = true , columnDefinition="CHAR(50)")
 	private String nombre;
-	
-	@Column(nullable = false , columnDefinition="CHAR(4)")
-	private String numero;
 
 	@Column(nullable = false , columnDefinition="CHAR(1)")
 	private String estado;
@@ -39,12 +36,10 @@ public class Ambiente {
 	private List<Solicitud> listaSolicitudes;
 	
 	
-	//TODO hay necesidad de llamar la lista de novedades?
-	
 	@OneToMany(mappedBy = "idAmbiente", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Novedad> listaNovedades;
 	
-	@OneToMany(mappedBy = "idAmbiente", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(mappedBy = "idAmbiente", cascade = {CascadeType.ALL})
 	private List<InventarioAmbiente> listaInventarioAmbiente;
 
 	/**
@@ -65,11 +60,10 @@ public class Ambiente {
 	 * @param estado
 	 * @param ocupado
 	 */
-	public Ambiente(String id, String nombre, String numero, String estado, String ocupado) {
+	public Ambiente(String id, String nombre, String estado, String ocupado) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.numero = numero;
 		this.estado = estado;
 		this.ocupado = ocupado;
 		this.listaSolicitudes = new ArrayList<Solicitud>();
@@ -117,14 +111,6 @@ public class Ambiente {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
 	}
 
 	public String getEstado() {

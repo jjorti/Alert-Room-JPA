@@ -57,8 +57,6 @@ public class AmbientesDAO implements Serializable{
 	}
 	
 	public Ambiente consultarAmbiente(String id) {
-		System.out.println("2");
-
 		Ambiente miAmbiente = entityManager.find(Ambiente.class, id);
 		if (miAmbiente != null) {
 			System.out.println(miAmbiente.getNombre());
@@ -71,6 +69,17 @@ public class AmbientesDAO implements Serializable{
 	public void close() {
 		entityManager.close();
 		JPAUtil.shutdown();
+	}
+
+	public Ambiente actualizarAmbiente(Ambiente ambiente) {
+		try {
+			entityManager.getTransaction().begin();
+			entityManager.merge(ambiente);
+			entityManager.getTransaction().commit();
+			return ambiente;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 
