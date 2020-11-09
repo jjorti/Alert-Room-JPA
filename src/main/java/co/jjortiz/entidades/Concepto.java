@@ -34,12 +34,10 @@ public class Concepto {
 	@OneToMany(mappedBy = "concepto", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Solicitud> listaSolicitudes;
 
-	
 	/**
 	 * Class constructor empty
 	 */
 	public Concepto() {
-		
 	}
 
 	/**
