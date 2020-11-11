@@ -15,7 +15,6 @@ public class UsuariosDAO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-
 	EntityManager entityManager=JPAUtil.getEntityManagerFactory().createEntityManager();
 
 	/**
@@ -25,10 +24,7 @@ public class UsuariosDAO implements Serializable{
 	 * @return Usuario si existe , null si no existe
 	 */
 	public Usuario consultarLoginUsuario(String id, String contrasena) {
-		
 		Usuario miUsuario=entityManager.find(Usuario.class, id);
-			
-		
 		if (miUsuario!=null && miUsuario.getEstado().equals("A")) {
 			return miUsuario;
 		}else {
@@ -43,11 +39,8 @@ public class UsuariosDAO implements Serializable{
 		JPAUtil.shutdown();
 	}
 
-
 	public String registrarUsuario(Usuario miUsuario) {
-		
 		String resp="";
-		
 		try {
 			entityManager.getTransaction().begin();
 			entityManager.persist(miUsuario);
@@ -61,12 +54,8 @@ public class UsuariosDAO implements Serializable{
 		return resp;
 	}
 
-
-
-	
 	public Usuario consultarUsuario(String documento) {
 		Usuario miUsuario=entityManager.find(Usuario.class,documento);
-		
 		if (miUsuario!=null) {
 			return miUsuario;
 		}else {
@@ -74,11 +63,7 @@ public class UsuariosDAO implements Serializable{
 		}
 	}
 	
-	
-	
-	
 	public String actualizarUsuario(Usuario miUsuario) {
-
 		String resp="";
 		try {
 			entityManager.getTransaction().begin();
@@ -91,8 +76,6 @@ public class UsuariosDAO implements Serializable{
 		}		
 		return resp;
 	}
-	
-	
 	
 	public String actualizarEstado(Usuario miUsuario) {
 		System.out.println("Entro a actualizar estado DAO JPA");
@@ -109,13 +92,10 @@ public class UsuariosDAO implements Serializable{
 		return resp;
 	}
 	
-	
 	public List<Usuario> listarUsuarios(){
 		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
 		Query query = entityManager.createQuery("SELECT u FROM Usuario u");
 		listaUsuarios = query.getResultList();
 		return listaUsuarios;
 	}
-	
-
 }

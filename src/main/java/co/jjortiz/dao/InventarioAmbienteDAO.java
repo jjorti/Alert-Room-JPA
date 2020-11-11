@@ -23,26 +23,20 @@ public class InventarioAmbienteDAO implements Serializable {
 		Articulo miArticulo = null;
 		InventarioAmbiente miInventarioAmbiente = null;
 		if (listaArticulos.size()>0) {
-			System.out.println("existe la lista");
 			for (InformacionInventario informacionInventario : listaArticulos) {
-				System.out.println("voyu a  recorrer la lista");
 				miInventarioAmbiente = new InventarioAmbiente();
 				Ambiente miAmbiente = new Ambiente();
 				miAmbiente.setId(idAmbiente);
 				miInventarioAmbiente.setIdAmbiente(miAmbiente);
-				System.out.println("cree el ambiente y lo añadi");
 				miArticulo = new Articulo();
 				miArticulo.setNombre(informacionInventario.getNombre());
-				System.out.println("cree el articulo y lo añadi");
 				miInventarioAmbiente.setIdArticulo(miArticulo);
 				miInventarioAmbiente.setCantidad(informacionInventario.getCantidad());
-				System.out.println("Añadi toda la informacion y voy a persistir");
 				
 				try {
 					entityManager.getTransaction().begin();
 					entityManager.persist(miInventarioAmbiente);
 					entityManager.getTransaction().commit();
-					System.out.println("Añadio sin problemas");
 					res = "ok";
 				} catch (Exception e) {
 					res = "error";

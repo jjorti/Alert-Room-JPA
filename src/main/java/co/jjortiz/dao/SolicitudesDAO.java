@@ -17,6 +17,11 @@ public class SolicitudesDAO implements Serializable{
 
 
 	EntityManager entityManager=JPAUtil.getEntityManagerFactory().createEntityManager();
+	
+	public void close() {
+		entityManager.close();
+		JPAUtil.shutdown();
+	}
 
 	public String solicitudLlaves(Solicitud solicitud) {
 		String res = "";

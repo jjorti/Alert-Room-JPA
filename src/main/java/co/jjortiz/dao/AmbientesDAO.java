@@ -16,6 +16,11 @@ public class AmbientesDAO implements Serializable{
 	
 	EntityManager entityManager=JPAUtil.getEntityManagerFactory().createEntityManager();
 	
+	public void close() {
+		entityManager.close();
+		JPAUtil.shutdown();
+	}
+	
 	public String crearAmbiente(Ambiente ambiente) {
 		String res = "";
 		try {
@@ -59,18 +64,12 @@ public class AmbientesDAO implements Serializable{
 	public Ambiente consultarAmbiente(String id) {
 		Ambiente miAmbiente = entityManager.find(Ambiente.class, id);
 		if (miAmbiente != null) {
-			System.out.println(miAmbiente.getNombre());
 			return miAmbiente;
 		} else {
 			return null;
 		}
 	}
 	
-	public void close() {
-		entityManager.close();
-		JPAUtil.shutdown();
-	}
-
 	public Ambiente actualizarAmbiente(Ambiente ambiente) {
 		try {
 			entityManager.getTransaction().begin();
@@ -81,6 +80,8 @@ public class AmbientesDAO implements Serializable{
 			return null;
 		}
 	}
+
+
 
 
 
