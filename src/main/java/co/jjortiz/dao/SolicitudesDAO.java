@@ -43,4 +43,13 @@ public class SolicitudesDAO implements Serializable{
 		return listaSolicitudes;
 	}
 
+	public List<Solicitud> obtenerSolicitudesAmbiente(String idAmbiente) {
+		System.out.println(idAmbiente);
+		List<Solicitud>  listaSolicitudes =  new ArrayList<Solicitud>();
+		Query query = entityManager.createQuery("SELECT  s FROM  Solicitud s WHERE s.idAmbiente.id = :idAmbiente");
+		query.setParameter("idAmbiente", idAmbiente);
+		listaSolicitudes = query.getResultList();
+		return listaSolicitudes;
+	}
+
 }
