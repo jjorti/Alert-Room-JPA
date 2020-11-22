@@ -41,9 +41,6 @@ public class Usuario {
 	@Column(name="tipo_usuario" , nullable = false , columnDefinition="CHAR(1)")
 	private String tipoUsuario;
 
-	@Column(nullable = true , columnDefinition = "TEXT")
-	private String foto;
-
 	@Column(nullable = false , columnDefinition="CHAR(1)")
 	private String estado;
 
@@ -113,14 +110,6 @@ public class Usuario {
 		this.tipoUsuario = tipoUsuario;
 	}
 
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-
 	public String getEstado() {
 		return estado;
 	}
@@ -129,12 +118,6 @@ public class Usuario {
 		this.estado = estado;
 	}
 
-	/*
-	 * public List<Novedad> getListaNovedades() { return listaNovedades; }
-	 * 
-	 * public void setListaNovedades(List<Novedad> listaNovedades) {
-	 * this.listaNovedades = listaNovedades; }
-	 */
 
 
 }

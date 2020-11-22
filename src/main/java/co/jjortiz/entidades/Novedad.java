@@ -1,8 +1,10 @@
 package co.jjortiz.entidades;
 
+
+
+
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -11,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,13 +31,11 @@ public class Novedad {
 	@Column(name = "idnovedad")
 	private Integer idNovedad;
 	
-	//TODO Preguntar por el cascade
 	@ManyToOne
 	@JoinColumn(name = "ambiente_id", referencedColumnName = "idambiente", foreignKey = @ForeignKey(name ="Fk_novedad_ambiente"))
 	private Ambiente idAmbiente;
 	
 	
-	//TODO Preguntar por tipo de dato que almacene hora y fecha 
     @Column(name = "fecha_hora")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHora;
